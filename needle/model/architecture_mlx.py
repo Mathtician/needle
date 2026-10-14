@@ -66,7 +66,7 @@ def _dense(x, kernel, dtype):
     return x.astype(dtype) @ kernel.astype(dtype)
 
 
-def precompute_rope_freqs(head_dim, seq_len, theta=10000.0):
+def precompute_rope_freqs(head_dim, seq_len, theta=100000.0):
     freqs = 1.0 / (theta ** (mx.arange(0, head_dim, 2).astype(mx.float32) / head_dim))
     angles = mx.arange(seq_len).astype(mx.float32)[:, None] * freqs[None, :]
     return mx.cos(angles), mx.sin(angles)

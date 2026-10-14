@@ -348,7 +348,7 @@ def width_slice(params, config, w):
 
 
 
-def precompute_rope_freqs(head_dim, seq_len, theta=10000.0):
+def precompute_rope_freqs(head_dim, seq_len, theta=100000.0):
     freqs = 1.0 / (theta ** (jnp.arange(0, head_dim, 2).astype(jnp.float32) / head_dim))
     t = jnp.arange(seq_len).astype(jnp.float32)
     angles = jnp.outer(t, freqs)
